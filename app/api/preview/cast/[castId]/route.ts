@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { castId: string } }
+  request: Request,
+  context: { params: Promise<{ castId: string }> }
 ) {
-  const { castId } = params;
+  const params = await context.params;
 
   return NextResponse.redirect(
-    "https://placehold.co/1200x630.png?text=Cast+" + castId
+    "https://placehold.co/1200x630.png?text=Cast+" + params.castId
   );
 }
