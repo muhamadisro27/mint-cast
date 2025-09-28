@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: { castId: string } }
+  context: { params: { castId: string } }
 ) {
-  const { castId } = params;
+  const { castId } = context.params;
   const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
   return NextResponse.json({
