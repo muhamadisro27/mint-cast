@@ -1,11 +1,13 @@
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { castId } = req.query;
-
+export async function GET(
+  req: Request,
+  { params }: { params: { castId: string } }
+) {
+  const { castId } = params;
   const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
-  res.json({
+  return NextResponse.json({
     version: "vNext",
     image: `${BASE_URL}/api/preview/cast/${castId}`,
     buttons: [
